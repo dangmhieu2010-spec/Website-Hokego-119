@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11/9 | Hồ Kẻ Gỗ - Hà Tĩnh | Tuyệt Tác Xanh Giữa Đại Ngàn</title>
+    
+    <!-- Google Fonts: Playfair Display & Be Vietnam Pro -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Cấu hình Tailwind mở rộng -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        emeraldDeep: '#0f4c5c',
+                        tealLake: '#1b6b63',
+                        forestGreen: '#2d6a4f',
+                        bridgeRed: '#c1121f',
+                        bridgeRedLight: '#d9534f',
+                        ivoryBg: '#f8faf9',
+                        sandWarm: '#f1f5f2',
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Be Vietnam Pro"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS cho Animations & Giao diện -->
+    <style>
+        :root {
+            --emerald-deep: #0f4c5c;
+            --teal-lake: #1b6b63;
+            --forest-green: #2d6a4f;
+            --bridge-red: #c1121f;
+            --ivory-bg: #f8faf9;
+            --marquee-height: 36px;
+        }
+
+        body {
+            background-color: var(--ivory-bg);
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+
+        /* Dải chữ chạy thông báo trên cùng (Marquee Banner) */
+        .top-marquee-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--marquee-height);
+            background: linear-gradient(90deg, #0b3946 0%, #1b6b63 50%, #0b3946 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            z-index: 60;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .marquee-track {
+            display: flex;
+            align-items: center;
+            width: max-content;
+            white-space: nowrap;
+            animation: marqueeSlide 26s linear infinite;
+            will-change: transform;
+        }
+
+        .marquee-item {
+            display: inline-flex;
+            align-items: center;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .top-marquee-bar:hover .marquee-track {
+            animation-play-state: paused;
+        }
+
+        @keyframes marqueeSlide {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Thanh tiến trình đọc trang nằm ngay dưới dải chữ chạy */
+        #scroll-progress {
+            position: fixed;
+            top: var(--marquee-height);
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #1b6b63, #c1121f);
+            width: 0%;
+            z-index: 100;
+            transition: width 0.1s ease-out;
+        }
+
+        /* Hiệu ứng Glassmorphism Navbar */
+        .glass-nav {
+            top: var(--marquee-height);
+            background: rgba(15, 76, 92, 0.25);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-nav.scrolled {
+            background: rgba(248, 250, 249, 0.94);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(15, 76, 92, 0.1);
+            box-shadow: 0 4px 24px -4px rgba(15, 76, 92, 0.08);
+        }
+
+        .glass-nav.scrolled .nav-link {
+            color: #0f4c5c;
+        }
+        
+        .glass-nav.scrolled .nav-link:hover {
+            color: #c1121f;
+        }
+
+        .glass-nav.scrolled .brand-text {
+            color: #0f4c5c;
+        }
+
+        .glass-nav.scrolled .nav-subtext {
+            color: #1b6b63;
+        }
+
+        .glass-nav.scrolled #motion-toggle {
+            background-color: rgba(15, 76, 92, 0.08);
+            color: #0f4c5c;
+            border-color: rgba(15, 76, 92, 0.15);
+        }
+
+        .glass-nav.scrolled #motion-toggle:hover {
+            background-color: rgba(15, 76, 92, 0.15);
+        }
+
+        .glass-nav.scrolled #mobile-menu-btn {
+            background-color: rgba(15, 76, 92, 0.1);
+            color: #0f4c5c;
+        }
+
+        .glass-nav.scrolled .mobile-link {
+            color: #0f4c5c;
+        }
+
+        .glass-nav.scrolled .mobile-link:hover {
+            background-color: rgba(15, 76, 92, 0.08);
+        }
+
+        /* Hiệu ứng Hero Zoom nhẹ (Ken Burns effect) */
+        @keyframes slowZoom {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.06); }
+            100% { transform: scale(1); }
+        }
+
+        .hero-bg-animate {
+            animation: slowZoom 24s ease-in-out infinite;
+        }
+
+        /* Hiệu ứng sóng nước SVG chuyển động */
+        .waves-container {
+            position: relative;
+            width: 100%;
+            height: 70px;
+            margin-bottom: -1px;
+            overflow: hidden;
+        }
+
+        .parallax-waves > use {
+            animation: moveForever 25s cubic-bezier(.55, .5, .45, .5) infinite;
+        }
+        .parallax-waves > use:nth-child(1) {
+            animation-delay: -2s;
+            animation-duration: 9s;
+        }
+        .parallax-waves > use:nth-child(2) {
+            animation-delay: -3s;
+            animation-duration: 13s;
+        }
+        .parallax-waves > use:nth-child(3) {
+            animation-delay: -4s;
+            animation-duration: 17s;
+        }
+        .parallax-waves > use:nth-child(4) {
+            animation-delay: -5s;
+            animation-duration: 22s;
+        }
+
+        @keyframes moveForever {
+            0% { transform: translate3d(-90px, 0, 0); }
+            100% { transform: translate3d(85px, 0, 0); }
+        }
+
+        /* Reveal Animations khi cuộn trang */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal.scale-in {
+            transform: scale(0.95) translateY(20px);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Stagger delays */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+        .delay-400 { transition-delay: 400ms; }
+
+        /* Tắt animation khi người dùng bật chế độ Reduce Motion */
+        body.reduce-motion *,
+        body.reduce-motion *::before,
+        body.reduce-motion *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+
+        body.reduce-motion .reveal {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        /* Tab Transition */
+        .tab-pane {
+            animation: fadeInTab 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeInTab {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1b6b63;
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0f4c5c;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-emeraldDeep selection:text-white">
+
+    <!-- Dải thông báo chữ chạy trên cùng -->
+    <div class="top-marquee-bar text-white text-xs sm:text-sm font-medium tracking-wide select-none" aria-label="Thông báo lớp 11/9">
+        <div class="marquee-track">
+            <!-- Nhóm nội dung 1 -->
+            <div class="marquee-item gap-14 px-7">
+                <span class="marquee-item gap-2.5">
+                    <span class="w-2 h-2 rounded-full bg-bridgeRedLight animate-ping shrink-0"></span>
+                    <span class="px-2.5 py-0.5 rounded-full bg-bridgeRed text-[11px] font-bold uppercase tracking-wider shadow-sm shrink-0">11/9</span>
+                    <span class="font-semibold text-emerald-50">Sản phẩm của 11/9</span>
+                </span>
+                <span class="text-emerald-100/90">Khám phá tuyệt tác xanh Hồ Kẻ Gỗ – Hà Tĩnh</span>
+                <span class="marquee-item gap-2.5">
+                    <span class="px-2.5 py-0.5 rounded-full bg-bridgeRed text-[11px] font-bold uppercase tracking-wider shadow-sm shrink-0">11/9</span>
+                    <span class="font-semibold text-emerald-50">Sản phẩm của 11/9</span>
+                </span>
+                <span class="text-emerald-100/90">Di sản thiên nhiên & lịch sử đại ngàn</span>
+            </div>
+            <!-- Nhóm nội dung 2 (Nhân bản để chạy vòng lặp vô tận mượt mà) -->
+            <div class="marquee-item gap-14 px-7" aria-hidden="true">
+                <span class="marquee-item gap-2.5">
+                    <span class="w-2 h-2 rounded-full bg-bridgeRedLight animate-ping shrink-0"></span>
+                    <span class="px-2.5 py-0.5 rounded-full bg-bridgeRed text-[11px] font-bold uppercase tracking-wider shadow-sm shrink-0">11/9</span>
+                    <span class="font-semibold text-emerald-50">Sản phẩm của 11/9</span>
+                </span>
+                <span class="text-emerald-100/90">Khám phá tuyệt tác xanh Hồ Kẻ Gỗ – Hà Tĩnh</span>
+                <span class="marquee-item gap-2.5">
+                    <span class="px-2.5 py-0.5 rounded-full bg-bridgeRed text-[11px] font-bold uppercase tracking-wider shadow-sm shrink-0">11/9</span>
+                    <span class="font-semibold text-emerald-50">Sản phẩm của 11/9</span>
+                </span>
+                <span class="text-emerald-100/90">Di sản thiên nhiên & lịch sử đại ngàn</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thanh tiến trình cuộn trang -->
+    <div id="scroll-progress"></div>
+
+    <!-- Thanh điều hướng (Navbar) -->
+    <header id="navbar" class="glass-nav fixed left-0 right-0 z-50 py-3.5 px-4 sm:px-8">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2.5 group">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-tealLake to-emeraldDeep flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
+                    <i data-lucide="waves" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <span class="brand-text font-serif font-bold text-lg sm:text-xl tracking-tight text-white transition-colors block leading-none">
+                        Hồ Kẻ Gỗ
+                    </span>
+                    <span class="text-[10px] uppercase tracking-[0.2em] text-emerald-200/90 font-medium block mt-0.5 nav-subtext transition-colors">
+                        Hà Tĩnh • Di Sản Xanh
+                    </span>
+                </div>
+            </a>
+
+            <!-- Menu Desktop -->
+            <nav class="hidden lg:flex items-center gap-7 text-sm font-medium">
+                <a href="#tong-quan" class="nav-link text-white/90 hover:text-white transition-colors">Tổng quan</a>
+                <a href="#diem-nhan" class="nav-link text-white/90 hover:text-white transition-colors">Điểm nhấn</a>
+                <a href="#trai-nghiem" class="nav-link text-white/90 hover:text-white transition-colors">Trải nghiệm</a>
+                <a href="#thu-vien" class="nav-link text-white/90 hover:text-white transition-colors">Thư viện ảnh</a>
+                <a href="#ke-hoach" class="nav-link text-white/90 hover:text-white transition-colors">Lên kế hoạch</a>
+            </nav>
+
+            <!-- Các nút tiện ích bên phải -->
+            <div class="flex items-center gap-2 sm:gap-3">
+        
+                <a href="#ke-hoach" class="hidden sm:inline-flex items-center gap-1.5 bg-bridgeRed hover:bg-bridgeRedLight text-white text-xs sm:text-sm font-medium px-4 py-2 rounded-full shadow-lg shadow-bridgeRed/25 transition-all hover:-translate-y-0.5">
+                    <span>Khám phá ngay</span>
+                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" type="button" class="lg:hidden p-2 rounded-xl bg-white/15 text-white hover:bg-white/25 transition-colors" aria-label="Mở menu">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden mt-3 pt-3 pb-2 border-t border-white/15 flex flex-col gap-2 text-sm font-medium">
+            <a href="#tong-quan" class="mobile-link px-3 py-2 rounded-lg text-white hover:bg-white/10">Tổng quan</a>
+            <a href="#diem-nhan" class="mobile-link px-3 py-2 rounded-lg text-white hover:bg-white/10">Điểm nhấn biểu tượng</a>
+            <a href="#trai-nghiem" class="mobile-link px-3 py-2 rounded-lg text-white hover:bg-white/10">Trải nghiệm bốn mùa</a>
+            <a href="#thu-vien" class="mobile-link px-3 py-2 rounded-lg text-white hover:bg-white/10">Thư viện góc nhìn</a>
+            <a href="#ke-hoach" class="mobile-link px-3 py-2 rounded-lg text-white hover:bg-white/10">Lên kế hoạch tham quan</a>
+        </div>
+    </header>
+
+    <!-- 1. HERO SECTION (Toàn màn hình) -->
+    <section class="relative min-h-[96vh] flex items-center justify-center overflow-hidden bg-emeraldDeep">
+        <!-- Hình nền toàn cảnh Hồ Kẻ Gỗ từ thư mục -->
+        <div class="absolute inset-0 z-0 overflow-hidden">
+            <img src="./image_3d32e5.jpg" 
+                 alt="Toàn cảnh Hồ Kẻ Gỗ và cây cầu đỏ uốn cong giữa lòng hồ xanh" 
+                 onerror="this.src='https://placehold.co/1920x1080/0f4c5c/ffffff?text=Ho+Ke+Go+Ha+Tinh'"
+                 class="w-full h-full object-cover object-center hero-bg-animate opacity-85">
+            <!-- Lớp phủ Gradient tạo chiều sâu sang trọng -->
+            <div class="absolute inset-0 bg-gradient-to-b from-emeraldDeep/75 via-emeraldDeep/45 to-emeraldDeep/90"></div>
+        </div>
+
+        <!-- Nội dung trung tâm Hero -->
+        <div class="relative z-10 max-w-4xl mx-auto px-5 text-center text-white pt-28 pb-20">
+            <!-- Huy hiệu vị trí -->
+            <div class="reveal inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-medium tracking-wide mb-6">
+                <span class="w-2 h-2 rounded-full bg-bridgeRedLight animate-pulse"></span>
+                <span>Cẩm Xuyên, Hà Tĩnh • Khu Bảo Tồn Thiên Nhiên</span>
+            </div>
+
+            <!-- Tiêu đề chính -->
+            <h1 class="reveal delay-100 font-serif text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.12] mb-6 drop-shadow-sm">
+                Viên Ngọc Xanh <br class="hidden sm:block">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-200 via-teal-100 to-white">
+                    Giữa Đại Ngàn Kẻ Gỗ
+                </span>
+            </h1>
+
+            <!-- Phụ đề súc tích -->
+            <p class="reveal delay-200 text-base sm:text-lg md:text-xl text-emerald-50/90 max-w-2xl mx-auto font-light leading-relaxed mb-9">
+                Tuyệt tác nhân tạo giữa đại ngàn Hà Tĩnh – Nơi lịch sử hào hùng hòa quyện cùng mặt nước ngọc bích và những hòn đảo xanh mướt.
+            </p>
+
+            <!-- Nút hành động -->
+            <div class="reveal delay-300 flex flex-col sm:flex-row items-center justify-center gap-3.5">
+                <a href="#tong-quan" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-bridgeRed hover:bg-bridgeRedLight text-white font-medium text-sm sm:text-base shadow-xl shadow-bridgeRed/30 transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                    <span>Bắt đầu hành trình</span>
+                    <i data-lucide="compass" class="w-4 h-4"></i>
+                </a>
+                <a href="#thu-vien" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/30 text-white font-medium text-sm sm:text-base transition-all flex items-center justify-center gap-2">
+                    <i data-lucide="image" class="w-4 h-4"></i>
+                    <span>Chiêm ngưỡng góc nhìn</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Hiệu ứng sóng nước SVG động nhẹ nhàng ở đáy Hero -->
+        <div class="absolute bottom-0 left-0 right-0 z-10 waves-container">
+            <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                 viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                <defs>
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                </defs>
+                <g class="parallax-waves">
+                    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(248, 250, 249, 0.25)" />
+                    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(248, 250, 249, 0.5)" />
+                    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(248, 250, 249, 0.75)" />
+                    <use xlink:href="#gentle-wave" x="48" y="7" fill="#f8faf9" />
+                </g>
+            </svg>
+        </div>
+    </section>
+
+    <!-- 2. TỔNG QUAN & CON SỐ ẤN TƯỢNG (Animated Counters) -->
+    <section id="tong-quan" class="py-16 sm:py-24 px-5 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            <!-- Cột nội dung cô đọng -->
+            <div class="lg:col-span-6 reveal">
+                <div class="inline-flex items-center gap-2 text-bridgeRed font-semibold text-xs uppercase tracking-widest mb-3">
+                    <span class="w-6 h-[2px] bg-bridgeRed"></span>
+                    <span>Dấu Ấn Lịch Sử & Thiên Nhiên</span>
+                </div>
+                <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-emeraldDeep leading-tight mb-5">
+                    Bản Tình Ca Của Nước Và Rừng Đại Ngàn
+                </h2>
+                <p class="text-slate-600 text-base sm:text-lg leading-relaxed mb-4">
+                    Khởi công năm <strong class="text-emeraldDeep font-semibold">1976</strong>, Hồ Kẻ Gỗ không chỉ là công trình đại thủy nông mang tầm vóc lịch sử của miền Trung mà còn là biểu tượng ý chí kiên cường của con người Hà Tĩnh, đi vào âm nhạc qua nhạc phẩm bất hủ <em>"Người đi xây hồ Kẻ Gỗ"</em>.
+                </p>
+                <p class="text-slate-600 text-base leading-relaxed mb-7">
+                    Bao bọc bởi Khu bảo tồn thiên nhiên Kẻ Gỗ rộng lớn, mặt hồ quanh năm xanh ngắt màu ngọc bích, điểm xuyết hơn 30 hòn đảo nhấp nhô tạo nên bức tranh sơn thủy hữu tình hiếm có.
+                </p>
+
+                <!-- Điểm nhấn ngắn gọn -->
+                <div class="flex flex-wrap gap-3">
+                    <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-tealLake/10 text-tealLake text-xs sm:text-sm font-medium">
+                        <i data-lucide="trees" class="w-4 h-4"></i> Rừng nguyên sinh đa tầng
+                    </span>
+                    <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-bridgeRed/10 text-bridgeRed text-xs sm:text-sm font-medium">
+                        <i data-lucide="landmark" class="w-4 h-4"></i> Di tích lịch sử & tâm linh
+                    </span>
+                </div>
+            </div>
+
+            <!-- Cột 4 thẻ con số ấn tượng (Animated Counter) -->
+            <div class="lg:col-span-6 grid grid-cols-2 gap-4 sm:gap-6" id="counters-grid">
+                <!-- Counter 1 -->
+                <div class="reveal delay-100 bg-white p-6 sm:p-7 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                    <div class="w-10 h-10 rounded-xl bg-emeraldDeep/10 text-emeraldDeep flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="droplets" class="w-5 h-5"></i>
+                    </div>
+                    <div class="font-serif text-3xl sm:text-4xl font-bold text-emeraldDeep mb-1">
+                        <span class="counter" data-target="345">0</span><span class="text-bridgeRed">+</span>
+                    </div>
+                    <div class="text-xs sm:text-sm font-semibold text-slate-800 uppercase tracking-wide">Triệu m³ nước</div>
+                    <p class="text-xs text-slate-500 mt-1">Dung tích hồ chứa ngọt khổng lồ</p>
+                </div>
+
+                <!-- Counter 2 -->
+                <div class="reveal delay-200 bg-white p-6 sm:p-7 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                    <div class="w-10 h-10 rounded-xl bg-forestGreen/10 text-forestGreen flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="sprout" class="w-5 h-5"></i>
+                    </div>
+                    <div class="font-serif text-3xl sm:text-4xl font-bold text-forestGreen mb-1">
+                        <span class="counter" data-target="24801" data-format="dot">0</span>
+                    </div>
+                    <div class="text-xs sm:text-sm font-semibold text-slate-800 uppercase tracking-wide">Hecta bảo tồn</div>
+                    <p class="text-xs text-slate-500 mt-1">Hệ sinh thái rừng đặc dụng quý giá</p>
+                </div>
+
+                <!-- Counter 3 -->
+                <div class="reveal delay-300 bg-white p-6 sm:p-7 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                    <div class="w-10 h-10 rounded-xl bg-bridgeRed/10 text-bridgeRed flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="calendar-check" class="w-5 h-5"></i>
+                    </div>
+                    <div class="font-serif text-3xl sm:text-4xl font-bold text-bridgeRed mb-1">
+                        <span class="counter" data-target="1976">0</span>
+                    </div>
+                    <div class="text-xs sm:text-sm font-semibold text-slate-800 uppercase tracking-wide">Năm khởi công</div>
+                    <p class="text-xs text-slate-500 mt-1">Kỳ tích lao động của quân dân Hà Tĩnh</p>
+                </div>
+
+                <!-- Counter 4 -->
+                <div class="reveal delay-400 bg-white p-6 sm:p-7 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                    <div class="w-10 h-10 rounded-xl bg-tealLake/10 text-tealLake flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="map-pin" class="w-5 h-5"></i>
+                    </div>
+                    <div class="font-serif text-3xl sm:text-4xl font-bold text-tealLake mb-1">
+                        <span class="counter" data-target="30">0</span><span class="text-bridgeRed">+</span>
+                    </div>
+                    <div class="text-xs sm:text-sm font-semibold text-slate-800 uppercase tracking-wide">Đảo lớn nhỏ</div>
+                    <p class="text-xs text-slate-500 mt-1">Nhấp nhô giữa lòng hồ xanh thẳm</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. ĐIỂM NHẤN BIỂU TƯỢNG (3 Cards tương tác) -->
+    <section id="diem-nhan" class="py-16 sm:py-24 bg-sandWarm/80 border-y border-slate-200/60">
+        <div class="max-w-7xl mx-auto px-5">
+            <!-- Header phân khu -->
+            <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+                <span class="text-bridgeRed font-semibold text-xs uppercase tracking-widest block mb-2">Biểu Tượng Kẻ Gỗ</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-emeraldDeep mb-3">
+                    Ba Dấu Ấn Không Thể Bỏ Lỡ
+                </h2>
+                <p class="text-slate-600 text-sm sm:text-base">
+                    Sự giao thoa giữa kiến trúc tâm linh tinh tế, kỳ tích thủy lợi và hệ sinh thái rừng nguyên sinh trù phú.
+                </p>
+            </div>
+
+            <!-- Grid 3 thẻ thông tin -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+                <!-- Thẻ 1: Đền thờ Cố TBT Lê Duẩn & Cầu Đỏ -->
+                <article class="reveal delay-100 group bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
+                    <div class="relative h-60 overflow-hidden bg-emeraldDeep">
+                        <img src="./image_3d32a9.jpg" 
+                             alt="Đền thờ Cố TBT Lê Duẩn giữa khuôn viên xanh mát"
+                             onerror="this.src='https://placehold.co/800x500/c1121f/ffffff?text=Den+Tho+%26+Cau+Do'"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-bridgeRed text-white text-xs font-medium shadow-md">
+                            Điểm nhấn tâm linh
+                        </div>
+                    </div>
+                    <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-serif text-xl sm:text-2xl font-bold text-emeraldDeep mb-2.5 group-hover:text-bridgeRed transition-colors">
+                                Đền Thờ Cố TBT Lê Duẩn & Cầu Đỏ
+                            </h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Tọa lạc trang nghiêm trên một bán đảo xanh mát giữa lòng hồ. Cây cầu đỏ uốn lượn duyên dáng nối đôi bờ trở thành biểu tượng kiến trúc đầy thơ mộng.
+                            </p>
+                        </div>
+                        <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-medium text-tealLake">
+                            <span class="flex items-center gap-1.5"><i data-lucide="sparkles" class="w-3.5 h-3.5 text-bridgeRed"></i> Kiến trúc hài hòa thiên nhiên</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Thẻ 2: Hệ sinh thái Đảo xanh & Rừng bảo tồn Kẻ Gỗ -->
+                <article class="reveal delay-200 group bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
+                    <div class="relative h-60 overflow-hidden bg-forestGreen">
+                        <img src="./image_3d32c3.jpg" 
+                             alt="Đảo xanh phủ kín cây cối giữa lòng hồ Kẻ Gỗ"
+                             onerror="this.src='https://placehold.co/800x500/2d6a4f/ffffff?text=Dao+Xanh+Ke+Go'"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-forestGreen text-white text-xs font-medium shadow-md">
+                            Lá phổi xanh
+                        </div>
+                    </div>
+                    <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-serif text-xl sm:text-2xl font-bold text-emeraldDeep mb-2.5 group-hover:text-forestGreen transition-colors">
+                                Đảo Xanh & Khu Bảo Tồn Kẻ Gỗ
+                            </h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Những hòn đảo xanh mướt phủ kín rừng cây giữa lòng hồ tạo nên thảm thực vật trù phú và bầu không khí trong lành, mát mẻ giữa đại ngàn Hà Tĩnh.
+                            </p>
+                        </div>
+                        <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-medium text-forestGreen">
+                            <span class="flex items-center gap-1.5"><i data-lucide="leaf" class="w-3.5 h-3.5"></i> Không gian sinh thái xanh mát</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Thẻ 3: Cầu đỏ uốn cong & Cảnh quan lòng hồ -->
+                <article class="reveal delay-300 group bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
+                    <div class="relative h-60 overflow-hidden bg-tealLake">
+                        <img src="./image_3d3304.jpg" 
+                             alt="Cầu đỏ uốn lượn nối hai bờ trên mặt nước xanh"
+                             onerror="this.src='https://placehold.co/800x500/1b6b63/ffffff?text=Cau+Do+Long+Ho'"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-emeraldDeep text-white text-xs font-medium shadow-md">
+                            Kỳ quan thủy lợi
+                        </div>
+                    </div>
+                    <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-serif text-xl sm:text-2xl font-bold text-emeraldDeep mb-2.5 group-hover:text-tealLake transition-colors">
+                                Cầu Đỏ & Cảnh Quan Lòng Hồ
+                            </h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Nhịp cầu đỏ mềm mại vắt qua làn nước xanh ngọc bích ôm trọn mặt hồ mênh mông, là điểm dừng chân lý tưởng để thu trọn vẻ đẹp sơn thủy vào tầm mắt.
+                            </p>
+                        </div>
+                        <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-medium text-emeraldDeep">
+                            <span class="flex items-center gap-1.5"><i data-lucide="sunrise" class="w-3.5 h-3.5 text-amber-500"></i> Tầm nhìn toàn cảnh hồ nước</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. TRẢI NGHIỆM & VẺ ĐẸP BỐN MÙA (Interactive Tabs) -->
+    <section id="trai-nghiem" class="py-16 sm:py-24 px-5 max-w-6xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-10 reveal">
+            <span class="text-tealLake font-semibold text-xs uppercase tracking-widest block mb-2">Hành Trình Khám Phá</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-emeraldDeep mb-3">
+                Trải Nghiệm Trọn Vẹn Tại Kẻ Gỗ
+            </h2>
+            <p class="text-slate-600 text-sm sm:text-base">
+                Chọn một hoạt động bên dưới để khám phá nhịp sống chậm rãi giữa thiên nhiên Hà Tĩnh.
+            </p>
+        </div>
+
+        <!-- Nút chuyển đổi Tab -->
+        <div class="reveal flex flex-wrap justify-center gap-2.5 sm:gap-3 mb-10" role="tablist">
+            <button class="exp-tab active px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all bg-emeraldDeep text-white shadow-md flex items-center gap-2" data-tab="boat">
+                <i data-lucide="sailboat" class="w-4 h-4"></i>
+                <span>Du thuyền ngắm đảo</span>
+            </button>
+            <button class="exp-tab px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 flex items-center gap-2" data-tab="bridge">
+                <i data-lucide="camera" class="w-4 h-4"></i>
+                <span>Check-in cầu đỏ</span>
+            </button>
+            <button class="exp-tab px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 flex items-center gap-2" data-tab="camp">
+                <i data-lucide="compass" class="w-4 h-4"></i>
+                <span>Ngắm cảnh từ trên cao</span>
+            </button>
+            <button class="exp-tab px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 flex items-center gap-2" data-tab="temple">
+                <i data-lucide="flame" class="w-4 h-4"></i>
+                <span>Viếng đền & dâng hương</span>
+            </button>
+        </div>
+
+        <!-- Khung hiển thị nội dung Tab -->
+        <div id="tab-content-wrapper" class="reveal bg-white rounded-3xl p-6 sm:p-10 border border-slate-100 shadow-lg shadow-emeraldDeep/5">
+            <!-- Nội dung sẽ được render mượt mà qua JS -->
+        </div>
+    </section>
+
+    <!-- 5. THƯ VIỆN GÓC NHÌN (Interactive Bento Gallery + Lightbox) -->
+    <section id="thu-vien" class="py-16 sm:py-24 bg-emeraldDeep text-white relative overflow-hidden">
+        <!-- Họa tiết trang trí nền nhẹ -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-tealLake/30 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-5 relative z-10">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 reveal">
+                <div>
+                    <span class="text-emerald-300 font-semibold text-xs uppercase tracking-widest block mb-2">Thư Viện Hình Ảnh</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white">
+                        Góc Nhìn Nghệ Thuật Hồ Kẻ Gỗ
+                    </h2>
+                </div>
+                <p class="text-emerald-100/80 text-sm max-w-md">
+                    Nhấp vào từng khung hình để phóng lớn và cảm nhận vẻ đẹp nguyên sơ của vùng đất Cẩm Xuyên.
+                </p>
+            </div>
+
+            <!-- Lưới Bento Grid 4 góc nhìn -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-5">
+                <!-- Ảnh 1: Toàn cảnh từ trên cao (Lớn - 7 cột) -->
+                <div class="reveal md:col-span-7 group relative h-72 sm:h-96 rounded-3xl overflow-hidden cursor-pointer bg-tealLake"
+                     onclick="openLightbox(0)">
+                    <img src="./image_3d3304.jpg" 
+                         alt="Toàn cảnh Hồ Kẻ Gỗ và cầu đỏ từ trên cao"
+                         onerror="this.src='https://placehold.co/1000x600/1b6b63/ffffff?text=Toan+Canh+Ho+Ke+Go'"
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="absolute bottom-5 left-6 right-6 flex items-end justify-between">
+                        <div>
+                            <span class="text-[11px] uppercase tracking-wider text-emerald-300 font-semibold">Góc nhìn Flycam</span>
+                            <h3 class="font-serif text-xl sm:text-2xl font-bold text-white mt-0.5">Toàn Cảnh Biển Hồ Xanh Ngắt</h3>
+                        </div>
+                        <span class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center group-hover:bg-bridgeRed transition-colors">
+                            <i data-lucide="maximize-2" class="w-4 h-4 text-white"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Ảnh 2: Cầu đỏ giữa hồ (5 cột) -->
+                <div class="reveal delay-100 md:col-span-5 group relative h-72 sm:h-96 rounded-3xl overflow-hidden cursor-pointer bg-bridgeRed"
+                     onclick="openLightbox(1)">
+                    <img src="./image_3d331e.jpg" 
+                         alt="Cây cầu đỏ nổi bật trên mặt nước xanh"
+                         onerror="this.src='https://placehold.co/800x600/c1121f/ffffff?text=Cau+Do+Giua+Ho'"
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-5 left-6 right-6 flex items-end justify-between">
+                        <div>
+                            <span class="text-[11px] uppercase tracking-wider text-rose-300 font-semibold">Điểm nhấn kiến trúc</span>
+                            <h3 class="font-serif text-xl sm:text-2xl font-bold text-white mt-0.5">Sắc Đỏ Giữa Lòng Hồ</h3>
+                        </div>
+                        <span class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center group-hover:bg-bridgeRed transition-colors">
+                            <i data-lucide="maximize-2" class="w-4 h-4 text-white"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Ảnh 3: Đảo xanh & Đền thờ trên cao (5 cột) -->
+                <div class="reveal delay-200 md:col-span-5 group relative h-72 sm:h-80 rounded-3xl overflow-hidden cursor-pointer bg-forestGreen"
+                     onclick="openLightbox(2)">
+                    <img src="./image_3d32e0.jpg" 
+                         alt="Khuôn viên đền thờ trên đảo giữa mặt hồ"
+                         onerror="this.src='https://placehold.co/800x600/2d6a4f/ffffff?text=Dao+Xanh+%26+Den+Tho'"
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-5 left-6 right-6 flex items-end justify-between">
+                        <div>
+                            <span class="text-[11px] uppercase tracking-wider text-emerald-300 font-semibold">Thiên nhiên & tâm linh</span>
+                            <h3 class="font-serif text-xl font-bold text-white mt-0.5">Đảo Xanh & Đền Thờ</h3>
+                        </div>
+                        <span class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center group-hover:bg-bridgeRed transition-colors">
+                            <i data-lucide="maximize-2" class="w-4 h-4 text-white"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Ảnh 4: Nhịp cầu qua tán cây & mặt nước (7 cột) -->
+                <div class="reveal delay-300 md:col-span-7 group relative h-72 sm:h-80 rounded-3xl overflow-hidden cursor-pointer bg-tealLake"
+                     onclick="openLightbox(3)">
+                    <img src="./image_3d3300.jpg" 
+                         alt="Nhịp cầu đỏ và mặt hồ xanh ngọc nhìn từ tán cây"
+                         onerror="this.src='https://placehold.co/1000x600/0f4c5c/ffffff?text=Nhip+Cau+Ho+Ke+Go'"
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-5 left-6 right-6 flex items-end justify-between">
+                        <div>
+                            <span class="text-[11px] uppercase tracking-wider text-amber-300 font-semibold">Khung cảnh thơ mộng</span>
+                            <h3 class="font-serif text-xl sm:text-2xl font-bold text-white mt-0.5">Lối Cầu Đỏ Ven Rừng Hồ</h3>
+                        </div>
+                        <span class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center group-hover:bg-bridgeRed transition-colors">
+                            <i data-lucide="maximize-2" class="w-4 h-4 text-white"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. THÔNG TIN THAM QUAN NHANH (Lên kế hoạch) -->
+    <section id="ke-hoach" class="py-16 sm:py-24 px-5 max-w-6xl mx-auto">
+        <div class="bg-white rounded-3xl p-7 sm:p-12 border border-slate-200/80 shadow-xl shadow-emeraldDeep/5 reveal">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-5">
+                    <span class="text-bridgeRed font-semibold text-xs uppercase tracking-widest block mb-2">Cẩm Nang Bỏ Túi</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-emeraldDeep mb-4">
+                        Lên Kế Hoạch Ghé Thăm
+                    </h2>
+                    <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+                        Chỉ mất khoảng 30 phút di chuyển từ trung tâm thành phố Hà Tĩnh, Hồ Kẻ Gỗ là điểm trốn nóng và chữa lành lý tưởng cho dịp cuối tuần.
+                    </p>
+                    <button type="button" onclick="copyCoordinates()" class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-emeraldDeep hover:bg-tealLake text-white text-xs sm:text-sm font-medium transition-all shadow-md">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
+                        <span id="copy-btn-text">Sao chép tọa độ Google Maps</span>
+                    </button>
+                </div>
+
+                <!-- 3 Cột thông tin nhanh -->
+                <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="p-5 rounded-2xl bg-ivoryBg border border-slate-100">
+                        <div class="w-9 h-9 rounded-lg bg-bridgeRed/10 text-bridgeRed flex items-center justify-center mb-3">
+                            <i data-lucide="navigation" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-bold text-emeraldDeep text-sm mb-1">Vị trí địa lý</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Xã Cẩm Mỹ, huyện Cẩm Xuyên, cách TP. Hà Tĩnh khoảng <strong>20 km</strong> về phía Tây Nam.
+                        </p>
+                    </div>
+
+                    <div class="p-5 rounded-2xl bg-ivoryBg border border-slate-100">
+                        <div class="w-9 h-9 rounded-lg bg-tealLake/10 text-tealLake flex items-center justify-center mb-3">
+                            <i data-lucide="sun" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-bold text-emeraldDeep text-sm mb-1">Thời điểm lý tưởng</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Tháng <strong>3 đến tháng 9</strong>: Trời nắng đẹp, nước hồ trong xanh ngọc bích, thuận tiện đi thuyền.
+                        </p>
+                    </div>
+
+                    <div class="p-5 rounded-2xl bg-ivoryBg border border-slate-100">
+                        <div class="w-9 h-9 rounded-lg bg-forestGreen/10 text-forestGreen flex items-center justify-center mb-3">
+                            <i data-lucide="shield-check" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-bold text-emeraldDeep text-sm mb-1">Lưu ý xanh</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Giữ gìn vệ sinh chung, trang phục lịch sự khi vào đền thờ và mặc áo phao khi đi thuyền.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-emeraldDeep text-emerald-100/80 pt-12 pb-8 px-5 border-t border-white/10">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 pb-8 border-b border-white/10">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center text-white">
+                    <i data-lucide="waves" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <div class="font-serif font-bold text-lg text-white">Hồ Kẻ Gỗ • Hà Tĩnh</div>
+                    <div class="text-xs text-emerald-200/70">Tuyệt tác thiên nhiên & di sản văn hóa miền Trung</div>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-6 text-xs sm:text-sm">
+                <a href="#tong-quan" class="hover:text-white transition-colors">Tổng quan</a>
+                <a href="#diem-nhan" class="hover:text-white transition-colors">Điểm nhấn</a>
+                <a href="#trai-nghiem" class="hover:text-white transition-colors">Trải nghiệm</a>
+                <a href="#thu-vien" class="hover:text-white transition-colors">Thư viện</a>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-emerald-200/60 gap-2">
+            <p>© Cổng thông tin giới thiệu Du lịch Sinh thái Hồ Kẻ Gỗ - Hà Tĩnh (Sản phẩm của 11/9).</p>
+            <p>Thiết kế lấy cảm hứng từ sắc xanh đại ngàn & nhịp cầu đỏ Kẻ Gỗ.</p>
+        </div>
+    </footer>
+
+    <!-- LIGHTBOX MODAL (Xem ảnh lớn) -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-8" onclick="closeLightbox(event)">
+        <div class="relative max-w-5xl w-full bg-emeraldDeep/40 rounded-3xl overflow-hidden border border-white/15 shadow-2xl" onclick="event.stopPropagation()">
+            <!-- Nút đóng -->
+            <button type="button" onclick="closeLightbox()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/50 hover:bg-bridgeRed text-white flex items-center justify-center transition-colors" aria-label="Đóng">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <!-- Điều hướng trái/phải -->
+            <button type="button" onclick="navigateLightbox(-1)" class="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/50 hover:bg-white/25 text-white flex items-center justify-center transition-colors" aria-label="Ảnh trước">
+                <i data-lucide="chevron-left" class="w-6 h-6"></i>
+            </button>
+            <button type="button" onclick="navigateLightbox(1)" class="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/50 hover:bg-white/25 text-white flex items-center justify-center transition-colors" aria-label="Ảnh tiếp theo">
+                <i data-lucide="chevron-right" class="w-6 h-6"></i>
+            </button>
+
+            <!-- Ảnh hiển thị -->
+            <div class="aspect-video max-h-[72vh] w-full bg-black flex items-center justify-center overflow-hidden">
+                <img id="lightbox-img" src="" alt="" class="w-full h-full object-contain">
+            </div>
+
+            <!-- Chú thích -->
+            <div class="p-5 sm:px-8 sm:py-5 bg-emeraldDeep text-white flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                    <span id="lightbox-tag" class="text-xs uppercase tracking-wider text-emerald-300 font-semibold"></span>
+                    <h4 id="lightbox-title" class="font-serif text-lg sm:text-xl font-bold"></h4>
+                    <p id="lightbox-desc" class="text-xs sm:text-sm text-emerald-100/80 mt-0.5"></p>
+                </div>
+                <div id="lightbox-counter" class="text-xs font-mono text-emerald-300 shrink-0">1 / 4</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST THÔNG BÁO -->
+    <div id="toast-box" class="fixed bottom-5 right-5 z-50 translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-emeraldDeep text-white px-4 py-3 rounded-2xl shadow-xl border border-white/15 flex items-center gap-2.5 text-xs sm:text-sm">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-300"></i>
+            <span id="toast-message">Đã sao chép tọa độ!</span>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Khởi tạo Lucide Icons
+        lucide.createIcons();
+
+        // 1. Dữ liệu & Logic cho phần Trải nghiệm (Tabs)
+        const experienceData = {
+            boat: {
+                tag: "Hành trình trên mặt nước",
+                title: "Du Thuyền Ngắm Đảo Ngọc Bích",
+                desc: "Lướt nhẹ trên mặt hồ phẳng lặng như gương, ngắm nhìn những hòn đảo xanh mướt và lắng nghe tiếng gió đại ngàn giữa lòng hồ Kẻ Gỗ.",
+                highlights: ["Ngắm trọn đường cong cầu đỏ từ mặt hồ", "Phù hợp cho gia đình & nhóm bạn", "Khung cảnh nước xanh rừng biếc yên bình"],
+                image: "./image_3d3322.jpg",
+                fallback: "https://placehold.co/800x550/1b6b63/ffffff?text=Du+Thuyen+Ngam+Dao"
+            },
+            bridge: {
+                tag: "Góc máy biểu tượng",
+                title: "Dạo Bước & Check-in Cầu Đỏ",
+                desc: "Cây cầu đỏ uốn cong mềm mại bắc qua mặt nước xanh là điểm dừng chân nổi bật nối liền đôi bờ với hòn đảo xanh giữa hồ.",
+                highlights: ["Góc chụp toàn cảnh cầu đỏ ấn tượng", "Phản chiếu sắc màu trên mặt nước", "Không gian thoáng đãng, lộng gió"],
+                image: "./image_3d331e.jpg",
+                fallback: "https://placehold.co/800x550/c1121f/ffffff?text=Check+In+Cau+Do"
+            },
+            camp: {
+                tag: "Toàn cảnh đại ngàn",
+                title: "Ngắm Cảnh Hồ Từ Trên Cao",
+                desc: "Từ góc nhìn trên cao, toàn bộ mặt hồ xanh mát, đồi rừng và nhịp cầu đỏ hiện lên rõ nét như một bức tranh thủy mặc giữa Hà Tĩnh.",
+                highlights: ["Thu trọn khung cảnh hồ và đảo xanh", "Không khí trong lành, mát mẻ", "Góc nhìn toàn cảnh đầy cuốn hút"],
+                image: "./image_3d3300.jpg",
+                fallback: "https://placehold.co/800x550/2d6a4f/ffffff?text=Canh+Quan+Tu+Tren+Cao"
+            },
+            temple: {
+                tag: "Uống nước nhớ nguồn",
+                title: "Viếng Đền Thờ Trên Đảo",
+                desc: "Không gian trang nghiêm, tĩnh tại giữa rừng cây xanh mát trên đảo hồ. Du khách đến đây dâng hương tri ân và chiêm ngưỡng kiến trúc truyền thống.",
+                highlights: ["Kiến trúc đền gỗ & mái ngói truyền thống", "Bao quanh bởi cây xanh và mặt nước", "Trang phục lịch sự, giữ trật tự nơi tôn nghiêm"],
+                image: "./image_3d32a2.jpg",
+                fallback: "https://placehold.co/800x550/0f4c5c/ffffff?text=Vieng+Den+Tho"
+            }
+        };
+
+        const tabWrapper = document.getElementById('tab-content-wrapper');
+        const tabButtons = document.querySelectorAll('.exp-tab');
+
+        function renderTab(key) {
+            const data = experienceData[key];
+            if (!data || !tabWrapper) return;
+
+            tabWrapper.innerHTML = `
+                <div class="tab-pane grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-10 items-center">
+                    <div class="lg:col-span-6 h-64 sm:h-80 rounded-2xl overflow-hidden bg-emeraldDeep">
+                        <img src="${data.image}" alt="${data.title}" onerror="this.src='${data.fallback}'" class="w-full h-full object-cover">
+                    </div>
+                    <div class="lg:col-span-6">
+                        <span class="inline-block px-3 py-1 rounded-full bg-tealLake/10 text-tealLake text-xs font-semibold mb-3">${data.tag}</span>
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-emeraldDeep mb-3">${data.title}</h3>
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-5">${data.desc}</p>
+                        <ul class="space-y-2.5">
+                            ${data.highlights.map(item => `
+                                <li class="flex items-center gap-2.5 text-xs sm:text-sm text-slate-700 font-medium">
+                                    <span class="w-5 h-5 rounded-full bg-bridgeRed/10 text-bridgeRed flex items-center justify-center shrink-0">
+                                        <i data-lucide="check" class="w-3 h-3"></i>
+                                    </span>
+                                    <span>${item}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        // Khởi tạo Tab mặc định
+        renderTab('boat');
+
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabButtons.forEach(b => {
+                    b.classList.remove('active', 'bg-emeraldDeep', 'text-white', 'shadow-md');
+                    b.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+                });
+                btn.classList.add('active', 'bg-emeraldDeep', 'text-white', 'shadow-md');
+                btn.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+                renderTab(btn.dataset.tab);
+            });
+        });
+
+        // 2. Dữ liệu & Logic Lightbox Thư viện ảnh
+        const galleryItems = [
+            {
+                tag: "Góc nhìn Flycam",
+                title: "Toàn Cảnh Biển Hồ Xanh Ngắt",
+                desc: "Hồ Kẻ Gỗ nhìn từ trên cao với mặt nước xanh rộng lớn, đồi rừng và nhịp cầu đỏ uốn cong nổi bật.",
+                src: "./image_3d3304.jpg"
+            },
+            {
+                tag: "Điểm nhấn kiến trúc",
+                title: "Sắc Đỏ Giữa Lòng Hồ",
+                desc: "Cây cầu đỏ duyên dáng vắt qua làn nước xanh, dẫn lối đến hòn đảo xanh giữa lòng hồ.",
+                src: "./image_3d331e.jpg"
+            },
+            {
+                tag: "Thiên nhiên & tâm linh",
+                title: "Đảo Xanh & Đền Thờ",
+                desc: "Khuôn viên đền thờ trên đảo được bao bọc bởi rừng cây xanh mát và mặt nước hồ Kẻ Gỗ.",
+                src: "./image_3d32e0.jpg"
+            },
+            {
+                tag: "Khung cảnh thơ mộng",
+                title: "Lối Cầu Đỏ Ven Rừng Hồ",
+                desc: "Nhịp cầu đỏ và mặt hồ xanh ngọc bích nhìn từ trên cao qua tán cây xanh mát.",
+                src: "./image_3d3300.jpg"
+            }
+        ];
+
+        let currentLightboxIndex = 0;
+        const lightboxModal = document.getElementById('lightbox-modal');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxTag = document.getElementById('lightbox-tag');
+        const lightboxTitle = document.getElementById('lightbox-title');
+        const lightboxDesc = document.getElementById('lightbox-desc');
+        const lightboxCounter = document.getElementById('lightbox-counter');
+
+        function openLightbox(index) {
+            currentLightboxIndex = index;
+            updateLightboxContent();
+            lightboxModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightboxModal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function navigateLightbox(step) {
+            currentLightboxIndex = (currentLightboxIndex + step + galleryItems.length) % galleryItems.length;
+            updateLightboxContent();
+        }
+
+        function updateLightboxContent() {
+            const item = galleryItems[currentLightboxIndex];
+            lightboxImg.src = item.src;
+            lightboxImg.alt = item.title;
+            lightboxTag.textContent = item.tag;
+            lightboxTitle.textContent = item.title;
+            lightboxDesc.textContent = item.desc;
+            lightboxCounter.textContent = `${currentLightboxIndex + 1} / ${galleryItems.length}`;
+        }
+
+        // Hỗ trợ phím Esc và mũi tên cho Lightbox
+        document.addEventListener('keydown', (e) => {
+            if (lightboxModal.classList.contains('hidden')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') navigateLightbox(-1);
+            if (e.key === 'ArrowRight') navigateLightbox(1);
+        });
+
+        // 3. Scroll Progress Bar & Navbar Glassmorphism
+        const progressBar = document.getElementById('scroll-progress');
+        const navbar = document.getElementById('navbar');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            if (progressBar) {
+                progressBar.style.width = `${scrollPercent}%`;
+            }
+
+            if (navbar) {
+                if (scrollTop > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+        }, { passive: true });
+
+        // 4. Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            document.querySelectorAll('.mobile-link').forEach(link => {
+                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            });
+        }
+
+        // 5. IntersectionObserver cho Reveal Animations & Animated Counters
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Hiệu ứng đếm số tự động (Animated Counter)
+        let countersStarted = false;
+        const countersGrid = document.getElementById('counters-grid');
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !countersStarted) {
+                    countersStarted = true;
+                    document.querySelectorAll('.counter').forEach(counter => {
+                        const target = parseInt(counter.dataset.target, 10);
+                        const formatDot = counter.dataset.format === 'dot';
+                        const duration = 1800;
+                        const startTime = performance.now();
+
+                        function updateCounter(currentTime) {
+                            const elapsed = currentTime - startTime;
+                            const progress = Math.min(elapsed / duration, 1);
+                            const easeProgress = 1 - Math.pow(1 - progress, 3);
+                            const currentVal = Math.floor(easeProgress * target);
+                            
+                            counter.textContent = formatDot 
+                                ? currentVal.toLocaleString('vi-VN') 
+                                : currentVal;
+
+                            if (progress < 1) {
+                                requestAnimationFrame(updateCounter);
+                            } else {
+                                counter.textContent = formatDot 
+                                    ? target.toLocaleString('vi-VN') 
+                                    : target;
+                            }
+                        }
+                        requestAnimationFrame(updateCounter);
+                    });
+                }
+            });
+        }, { threshold: 0.25 });
+
+        if (countersGrid) counterObserver.observe(countersGrid);
+
+        // 6. Nút Bật/Tắt Hiệu ứng Chuyển động (Reduce Motion Toggle)
+        const motionToggle = document.getElementById('motion-toggle');
+        const motionLabel = document.getElementById('motion-label');
+        let isReducedMotion = false;
+
+        if (motionToggle) {
+            motionToggle.addEventListener('click', () => {
+                isReducedMotion = !isReducedMotion;
+                document.body.classList.toggle('reduce-motion', isReducedMotion);
+                if (motionLabel) {
+                    motionLabel.textContent = isReducedMotion ? 'Hiệu ứng: Tắt' : 'Hiệu ứng: Bật';
+                }
+                showToast(isReducedMotion ? 'Đã tắt hiệu ứng chuyển động' : 'Đã bật hiệu ứng chuyển động mượt');
+            });
+        }
+
+        // 7. Tiện ích sao chép tọa độ Google Maps & Toast thông báo
+        function copyCoordinates() {
+            const coords = "18.1756, 105.9553 (Hồ Kẻ Gỗ, Cẩm Xuyên, Hà Tĩnh)";
+            const tempInput = document.createElement('input');
+            tempInput.value = coords;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                document.execCommand('copy');
+                showToast('Đã sao chép tọa độ Hồ Kẻ Gỗ!');
+            } catch (err) {
+                showToast('Tọa độ: 18.1756° N, 105.9553° E');
+            }
+            document.body.removeChild(tempInput);
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast-box');
+            const toastMsg = document.getElementById('toast-message');
+            if (!toast || !toastMsg) return;
+            toastMsg.textContent = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
